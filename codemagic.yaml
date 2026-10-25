@@ -4,7 +4,8 @@ workflows:
     max_build_duration: 30
     instance_type: mac_mini_m1
     environment:
-      android_gradle_plugin: 8.1.0
+      vars:
+        PACKAGE_NAME: "com.example.amissearch"
       java: 17
     scripts:
       - name: Set up local.properties
@@ -13,6 +14,6 @@ workflows:
       - name: Build Android APK
         script: |
           chmod +x gradlew || true
-          ./gradlew assembleDebug --stacktrace
+          gradle assembleDebug --stacktrace
     artifacts:
       - app/build/outputs/apk/**/*.apk
