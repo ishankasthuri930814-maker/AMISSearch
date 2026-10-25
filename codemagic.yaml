@@ -9,9 +9,10 @@ workflows:
       - name: Set up local.properties
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
-      - name: Build Android APK
+      - name: Use specific Gradle version and build APK
         script: |
           chmod +x gradlew || true
-          gradle assembleDebug --stacktrace
+          ./gradlew wrapper --gradle-version 8.5
+          ./gradlew assembleDebug --stacktrace
     artifacts:
       - app/build/outputs/apk/**/*.apk
